@@ -3,6 +3,7 @@
 using namespace std;
 class Book
 {
+private:
     string name;
     double price;
 
@@ -19,6 +20,7 @@ public:
     // Setters
     void setName(string name);
     void setPrice(double price);
+    // Virtual functions
     virtual double getRealPrice();
     virtual string str();
 };
