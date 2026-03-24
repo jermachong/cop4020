@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/Owner/workspace-school/cop4020/cpp/lecture",
+      "program": "/Users/Owner/workspace-school/cop4020/cpp/lecture/build/Debug/outDebug"
+    }
+  ]
+}
