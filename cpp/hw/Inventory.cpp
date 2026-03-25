@@ -1,4 +1,16 @@
-// Inventory.cpp
+/*
+    Author:       Jeremy Achong
+    NID:          5124781
+    Course:       COP4020
+
+    Title:  Inventory.cpp
+    Description:    Implementation file for the Inventory class. This class represents an inventory
+    of books, which can include both regular books and spell books. The class includes a
+    vector of unique pointers to Book instances, as well as functions for reading book data
+    from a file, adding books to the inventory, checking if the inventory is empty,
+    getting a string representation of the inventory, calculating the total price of the
+    books, searching for a specific book by name, and displaying a menu for user interaction.
+*/
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -10,15 +22,30 @@ using namespace std;
 
 // Inventory Class
 // Constructor
+/**
+ * @brief Construct an Inventory and load book data from a file.
+ * @param fname The path to the input data file.
+ * @return None.
+ */
 Inventory::Inventory(string fname)
 {
     this->readData(fname);
 }
 // Destructor
+/**
+ * @brief Destroy the Inventory object.
+ * @param None.
+ * @return None.
+ */
 Inventory::~Inventory()
 {
 }
 // Functions
+/**
+ * @brief Read book records from a file and populate the inventory.
+ * @param fname The path to the input data file.
+ * @return None.
+ */
 void Inventory::readData(string fname)
 {
     // opens fname, on failure prints Error opening file {fname} and returns
@@ -46,16 +73,34 @@ void Inventory::readData(string fname)
     }
     infile.close();
 }
+
+/**
+ * @brief Add a book object to the inventory.
+ * @param book A unique pointer to a Book (or derived type) to store.
+ * @return None.
+ */
 void Inventory::add(unique_ptr<Book> book)
 {
     // appends book to vec
     this->vec.push_back(std::move(book));
 }
+
+/**
+ * @brief Check whether the inventory contains any books.
+ * @param None.
+ * @return True if the inventory is empty; otherwise false.
+ */
 bool Inventory::isEmpty()
 {
     // returns true if vec is empty, false otherwise
     return this->vec.empty();
 }
+
+/**
+ * @brief Build a multi-line string of all books in the inventory.
+ * @param None.
+ * @return A newline-separated string representation of all books.
+ */
 string Inventory::str()
 {
     // returns each book element's str() joinwed with newlines
@@ -66,6 +111,12 @@ string Inventory::str()
     }
     return result;
 }
+
+/**
+ * @brief Calculate the total real price of all books.
+ * @param None.
+ * @return The sum of getRealPrice() for every stored book.
+ */
 double Inventory::getRealTotal()
 {
     // returns the sum of each book element's getRealPrice()
@@ -76,6 +127,12 @@ double Inventory::getRealTotal()
     }
     return total;
 }
+
+/**
+ * @brief Search for books whose names contain a given substring.
+ * @param bname The substring to match against each book name.
+ * @return None.
+ */
 void Inventory::searchBook(string bname)
 {
     // if a book with name bname exists in vec, prints its str() and returns, otherwise prints No result found
@@ -95,6 +152,12 @@ void Inventory::searchBook(string bname)
     if (!found)
         cout << "No result found" << endl;
 }
+
+/**
+ * @brief Run the interactive inventory menu loop.
+ * @param None.
+ * @return None.
+ */
 void Inventory::menu()
 {
     // if isEmpty() is true, reutns without printing anything

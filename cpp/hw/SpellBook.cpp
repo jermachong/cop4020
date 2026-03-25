@@ -1,4 +1,15 @@
-// Spellbook.cpp
+/*
+    Author:       Jeremy Achong
+    NID:          5124781
+    Course:       COP4020
+
+    Title:  SpellBook.cpp
+    Description:    Implementation file for the SpellBook class. This class represents a spell book,
+    which is a type of book that has an additional attribute, canTalk, indicating whether the
+    spell book can talk. The class includes constructors, a destructor, a getter for
+    the canTalk attribute, and overrides for the getRealPrice and str virtual functions
+    from the Book class.
+*/
 #include <sstream>
 #include <string>
 #include <vector>
@@ -7,14 +18,33 @@ using namespace std;
 
 // SpellBook class
 //  Constructors
+/**
+ * @brief Construct a default SpellBook object.
+ * @param None.
+ * @return None.
+ */
 SpellBook::SpellBook() : Book()
 {
     this->canTalk = true;
 }
+
+/**
+ * @brief Construct a SpellBook object with explicit values.
+ * @param gname The spell book title.
+ * @param gprice The base price of the spell book.
+ * @param cantalkparam Whether the spell book can talk.
+ * @return None.
+ */
 SpellBook::SpellBook(string gname, double gprice, bool cantalkparam) : Book(gname, gprice)
 {
     this->canTalk = cantalkparam;
 }
+
+/**
+ * @brief Construct a SpellBook object from a formatted text line.
+ * @param text A line in the format: s <title possibly with spaces> <price> <canTalk>.
+ * @return None.
+ */
 SpellBook::SpellBook(string text) : Book(text)
 {
     // format: s <title possibly with spaces> <price> <canTalk>
@@ -56,15 +86,30 @@ SpellBook::SpellBook(string text) : Book(text)
     }
 }
 // Destructor
+/**
+ * @brief Destroy the SpellBook object.
+ * @param None.
+ * @return None.
+ */
 SpellBook::~SpellBook()
 {
 }
 // Getters
+/**
+ * @brief Check whether the spell book can talk.
+ * @param None.
+ * @return True if the spell book can talk; otherwise false.
+ */
 bool SpellBook::getCanTalk()
 {
     return this->canTalk;
 }
 // Virtual functions
+/**
+ * @brief Compute the real price for a spell book.
+ * @param None.
+ * @return The base price, with a 10% increase when the spell book can talk.
+ */
 double SpellBook::getRealPrice()
 {
     if (canTalk)
@@ -73,6 +118,12 @@ double SpellBook::getRealPrice()
     }
     return this->getPrice();
 }
+
+/**
+ * @brief Build a display string for the spell book.
+ * @param None.
+ * @return A formatted string containing type label, name, and real price.
+ */
 string SpellBook::str()
 {
     // if can talk is false, "Spell Book:" otherwise "Speaking Book:"
