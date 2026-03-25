@@ -110,13 +110,13 @@ void Inventory::menu()
         getline(cin, option);
         if (option == "all")
         {
-            cout << "\nThe book/s in the inventory is/are\n";
+            cout << "The book/s in the inventory is/are\n";
             cout << this->str();
             cout << endl;
         }
         else if (option == "total")
         {
-            cout << "\nTotal price of the books is " << fixed << setprecision(6) << this->getRealTotal() << "\n\n";
+            cout << "Total price of the books is " << fixed << setprecision(6) << this->getRealTotal() << "\n\n";
         }
         else if (option.find("search ") == 0)
         {
