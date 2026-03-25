@@ -1,6 +1,10 @@
 // Book Class
+#ifndef BOOK_H
+#define BOOK_H
+
 #include <string>
 using namespace std;
+
 class Book
 {
 private:
@@ -13,7 +17,7 @@ public:
     Book(string btitle, double gprice);
     Book(string text);
     // Destructor
-    ~Book();
+    virtual ~Book();
     // Getters
     string getName();
     double getPrice();
@@ -24,3 +28,5 @@ public:
     virtual double getRealPrice();
     virtual string str();
 };
+
+#endif

@@ -1,6 +1,10 @@
 // Inventory Class
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
 #include <string>
 #include <vector>
+#include <memory>
 #include "Book.h"
 #include "SpellBook.h"
 using namespace std;
@@ -13,6 +17,7 @@ Storing unique pointers will save us from the burden of memory management.
 class Inventory
 {
 private:
+    // Vector of unique pointers to Book instances
     vector<unique_ptr<Book>> vec;
 
 public:
@@ -25,7 +30,9 @@ public:
     void add(unique_ptr<Book> book);
     bool isEmpty();
     string str();
-    double getRealTota();
+    double getRealTotal();
     void searchBook(string bname);
     void menu();
 };
+
+#endif
