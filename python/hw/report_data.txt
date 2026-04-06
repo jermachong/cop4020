@@ -1,0 +1,26 @@
+EMPLOYEE PERFORMANCE REPORT
+=================
+Generated from: data.txt
+
+Company Statistics:
+Total Employees: 7
+Overall Average Performance: 80.7
+Average Salary: 66666.67
+
+Department Breakdown
+-------------
+Engineering Department:
+- Employees: 3
+- Average Performance: 89.0
+- Average Salary: 79333.33
+
+HR Department:
+- Employees: 1
+- Average Performance: 72.0
+- Average Salary: 52000.0
+
+Marketing Department:
+- Employees: 3
+- Average Performance: 81.1
+- Average Salary: 68666.67
+
