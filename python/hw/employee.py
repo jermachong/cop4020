@@ -1,4 +1,9 @@
-
+#
+# Author: Jeremy Achong
+# PID: 5124781
+# This file contains the Employee class which represents an employee record with attributes
+# such as idNum, name, dept, age, score, and salary.
+#
 class Employee:
     def __init__(self, idNum: int, name: str, dept: str,
                  age: int, score: float, salary: int):
@@ -23,6 +28,8 @@ class Employee:
         salary = int(fields[5])
         return Employee(idNum, name, dept, age, score, salary)
 
+    # rate the employee based on their score
+    # and return a string representing the rating
     def rating(self) -> str:
         if self.score > 90:
             return "Excellent"
@@ -32,7 +39,9 @@ class Employee:
             return "Fair"
         else:
             return "Bad"
-    
+        
+    # override the __lt__ and __eq__ methods to compare Employee objects 
+    # based on their idNum, name, dept, age, score, and salary
     def __lt__(self, other) -> bool:
         return self.idNum < other.idNum
 
@@ -43,17 +52,17 @@ class Employee:
    
     def __repr__(self) -> str:
         # returns a multi-line string representation of the Employee object
-        string = (f"Name: {self.name}\n" + f"ID: {self.idNum}\n" +
-                  f"Department: {self.dept}\n" + f"Rating: {self.rating()}\n" +
-                  f"Age: {self.age}\n" + f"Score: {self.score}\n" +
-                  f"Salary: {self.salary}")
+        string = (f"Name:{self.name}\n" + f"ID:{self.idNum}\n" +
+                  f"Department:{self.dept}\n" + f"Rating:{self.rating()}\n" +
+                  f"Age:{self.age}\n" + f"Score:{self.score}\n" +
+                  f"Salary:{self.salary}")
         return string
 
 
-## Test code
-emp1 = Employee(1001, "Alice Johnson", "Engineering", 29, 88, 75000)
-print(emp1)
-emp2 = Employee.createEmployee("1002,Bob Smith, Marketing,35,92,80000")
-print(emp2)
-print(emp1.__lt__(emp2))  # True, since 1001 < 1002
-print(emp1.__eq__(emp2))  # False, since emp1 and emp2 have different attributes
+# ## Test code
+# emp1 = Employee(1001, "Alice Johnson", "Engineering", 29, 88, 75000)
+# print(emp1)
+# emp2 = Employee.createEmployee("1002,Bob Smith, Marketing,35,92,80000")
+# print(emp2)
+# print(emp1.__lt__(emp2))  # True, since 1001 < 1002
+# print(emp1.__eq__(emp2))  # False, since emp1 and emp2 have different attributes
