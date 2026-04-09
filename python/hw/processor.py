@@ -77,7 +77,7 @@ class Processor:
         if count > 0:
             avg_score = total_score / count
             avg_salary = total_salary / count
-            return f"{dept} Department:\n- Employees: {count}\n- Average Performance: {avg_score:.2f}\n- Average Salary: {avg_salary:.2f}"
+            return f"{dept} Department:\n- Employees: {count}\n- Average Performance: {avg_score:.2f}\n- Average Salary: {avg_salary:.2f}\n"
         else:
             return f"No employees found in department: {dept}"
 
@@ -136,7 +136,7 @@ class Processor:
             departments = set(emp.dept for emp in self.employees.values())
             for dept in sorted(departments):
                 report_file.write(f"{self.departmentStats(dept)}\n")
-            report_file.write("----\n")
+            # report_file.write("----\n")
     
     def menu(self) -> None:
         # display a menu to the user and allow them to choose options to view statistics, search for employees, or generate a report
