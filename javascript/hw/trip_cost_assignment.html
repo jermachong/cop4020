@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trip Cost vs Bus Ticket</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2em;
+        max-width: 600px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-top: 1em;
+      }
+      #result {
+        margin-top: 2em;
+        width: 100%;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Trip Cost Calculator</h1>
+
+    <form id="tripForm">
+      <label>
+        Total Distance (miles):
+        <input type="number" id="distance" step="0.1" />
+      </label>
+
+      <label>
+        Fuel Efficiency (mpg):
+        <input type="number" id="efficiency" step="0.1" />
+      </label>
+
+      <label>
+        Fuel Price (per gallon):
+        <input type="number" id="fuelPrice" step="0.01" />
+      </label>
+
+      <label>
+        Round Trip?
+        <input type="checkbox" id="roundTrip" />
+      </label>
+
+      <label>
+        Number of Passengers (including driver):
+        <input type="number" id="passengers" min="1" />
+      </label>
+
+      <label>
+        Bus Ticket Price (per person):
+        <input type="number" id="busPrice" step="0.01" />
+      </label>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <label for="result">Result:</label>
+    <textarea id="result" readonly></textarea>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // add JavaScript logic here
+        // select the button
+
+        // helper function to check if a value is a valid number
+        function isValidNumber(value) {
+          return !isNaN(value) && value > 0;
+        }
+
+        const button = document.getElementsByTagName("button")[0];
+        button.addEventListener("click", function () {
+          // alert("Button clicked!"); // test
+
+          event.preventDefault(); // stops the form from submitting and refreshing the page
+          if (
+            !isValidNumber(document.getElementById("distance").value) ||
+            !isValidNumber(document.getElementById("efficiency").value) ||
+            !isValidNumber(document.getElementById("fuelPrice").value) ||
+            !isValidNumber(document.getElementById("passengers").value) ||
+            !isValidNumber(document.getElementById("busPrice").value)
+          ) {
+            alert("Please enter valid positive numbers for all fields.");
+            return;
+          }
+          const distance = parseFloat(
+            document.getElementById("distance").value,
+          );
+          const efficiency = parseFloat(
+            document.getElementById("efficiency").value,
+          );
+          const fuelPrice = parseFloat(
+            document.getElementById("fuelPrice").value,
+          );
+          const roundTrip = document.getElementById("roundTrip").checked;
+          const passengers = parseInt(
+            document.getElementById("passengers").value,
+          );
+          const busPrice = parseFloat(
+            document.getElementById("busPrice").value,
+          );
+          let totalDistance = distance;
+          if (roundTrip) {
+            totalDistance *= 2;
+          }
+          const fuelNeeded = totalDistance / efficiency;
+          const tripCost = fuelNeeded * fuelPrice;
+          const costPerPerson = tripCost / passengers;
+          const busCost = passengers * busPrice;
+          const resultArea = document.getElementById("result");
+          resultArea.value = 
+          `Total Distance:${totalDistance.toFixed(1)} miles\n`+`Fuel Used:${fuelNeeded.toFixed(2)} gallons\n`+`Total Trip Cost:${tripCost.toFixed(2)}\n`+`Cost per Person:${costPerPerson.toFixed(2)}\n`;
+          if (costPerPerson < busCost) {
+            resultArea.value += `Driving is cheaper than taking the bus!`;
+          } else {
+            resultArea.value += `Going by bus is better`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
